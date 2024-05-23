@@ -4,30 +4,53 @@ using namespace std;
 
 int main() {
 	srand(time(0));
-
-	const int array_size = 11;
-	int arr[array_size];
-	for (int i = 0; i < array_size; i++) {
-		arr[i] = rand() % 2 + 0;
+	const int memo_supreme = 10;
+	const int memo_lesser = 5;
+	int arch_arr[memo_supreme];
+	int arr_1[memo_lesser];
+	int	arr_2[memo_lesser];
+	for (int i = 0; i < memo_lesser; i++) {
+		arr_1[i] = rand() % 20 - 10;
+		arr_2[i] = rand() % 20 - 10;
 	}
 
-	for (int i = 0; i < array_size; i++) {
-		cout << arr[i] << " ";
+	for (int i = 0; i < memo_lesser; i++) {
+		cout << arr_1[i] << " ";
+	}
+	cout << endl;
+	for (int i = 0; i < memo_lesser; i++) {
+		cout << arr_2[i] << " ";
 	}
 
-	cout << endl << endl;
+	cout << endl;
 
-	for (int i = array_size; i >= 0; i--) {
-		if (arr[i] == 0) {
-			for (int j = i; j < array_size; j++) {
-				arr[j] = arr[j + 1];
-			}
-			arr[array_size - 1] = -1;
+	int j = 0;
+	for (int i = 0; i < memo_lesser; i++) {
+		if (arr_1[i] > 0) {
+			arch_arr[j++] = arr_1[i];
+		}
+		if (arr_2[i] > 0) {
+			arch_arr[j++] = arr_2[i];
+		}
+	}
+	for (int i = 0; i < memo_lesser; i++) {
+		if (arr_1[i] == 0) {
+			arch_arr[j++] = arr_1[i];
+		}
+		if (arr_2[i] == 0) {
+			arch_arr[j++] = arr_2[i];
+		}
+	}
+	for (int i = 0; i < memo_lesser; i++) {
+		if (arr_1[i] < 0) {
+			arch_arr[j++] = arr_1[i];
+		}
+		if (arr_2[i] < 0) {
+			arch_arr[j++] = arr_2[i];
 		}
 	}
 
-	for (int i = 0; i < array_size; i++) {
-		cout << arr[i] << " ";
+	for (int i = 0; i < memo_supreme; i++) {
+		cout << arch_arr[i] << " ";
 	}
-	
 }
